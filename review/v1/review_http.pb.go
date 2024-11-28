@@ -49,7 +49,7 @@ func RegisterReviewHTTPServer(s *http.Server, srv ReviewHTTPServer) {
 	r.POST("/v1/review", _Review_CreateReview0_HTTP_Handler(srv))
 	r.GET("/v1/review/{reviewID}", _Review_GetReview0_HTTP_Handler(srv))
 	r.POST("/v1/review/audit", _Review_AuditReview0_HTTP_Handler(srv))
-	r.POST("/v1/review/reply", _Review_ReplyReview1_HTTP_Handler(srv))
+	r.POST("/v1/review/reply", _Review_ReplyReview0_HTTP_Handler(srv))
 	r.POST("/v1/review/appeal", _Review_AppealReview0_HTTP_Handler(srv))
 	r.POST("/v1/appeal/audit", _Review_AuditAppeal0_HTTP_Handler(srv))
 	r.GET("/v1/{userID}/reviews", _Review_ListReviewByUserID0_HTTP_Handler(srv))
@@ -121,7 +121,7 @@ func _Review_AuditReview0_HTTP_Handler(srv ReviewHTTPServer) func(ctx http.Conte
 	}
 }
 
-func _Review_ReplyReview1_HTTP_Handler(srv ReviewHTTPServer) func(ctx http.Context) error {
+func _Review_ReplyReview0_HTTP_Handler(srv ReviewHTTPServer) func(ctx http.Context) error {
 	return func(ctx http.Context) error {
 		var in ReplyReviewRequest
 		if err := ctx.Bind(&in); err != nil {
