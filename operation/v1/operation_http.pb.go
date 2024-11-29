@@ -31,7 +31,7 @@ type OperationHTTPServer interface {
 
 func RegisterOperationHTTPServer(s *http.Server, srv OperationHTTPServer) {
 	r := s.Route("/")
-	r.POST("o/v1/appeal/audit", _Operation_AuditReview0_HTTP_Handler(srv))
+	r.POST("o/v1/review/audit", _Operation_AuditReview0_HTTP_Handler(srv))
 	r.POST("o/v1/appeal/audit", _Operation_AuditAppeal0_HTTP_Handler(srv))
 }
 
@@ -107,7 +107,7 @@ func (c *OperationHTTPClientImpl) AuditAppeal(ctx context.Context, in *AuditAppe
 
 func (c *OperationHTTPClientImpl) AuditReview(ctx context.Context, in *AuditReviewRequest, opts ...http.CallOption) (*AuditReviewReply, error) {
 	var out AuditReviewReply
-	pattern := "o/v1/appeal/audit"
+	pattern := "o/v1/review/audit"
 	path := binding.EncodeURL(pattern, in, false)
 	opts = append(opts, http.Operation(OperationOperationAuditReview))
 	opts = append(opts, http.PathTemplate(pattern))
